@@ -17,6 +17,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import { salesTableData } from '../mocks/salesTableData';
+import { formatAmount } from '../utils/formatAmount';
 import type { FilterParams, Sale } from '../types/sale';
 import type { GridColDef } from '@mui/x-data-grid';
 
@@ -43,16 +44,25 @@ const RecentSalesTable: React.FC = () => {
   }
 
 
-  const filteredRows = filterSalesData(salesTableData, { search, vendedor, producto });
+    const filteredRows = filterSalesData(salesTableData, { search, vendedor, producto });
 
-  const columns: GridColDef<(typeof filteredRows)[number]>[] = [
-    { field: 'id', headerName: 'ID', disableColumnMenu: true, flex: 0.5, minWidth: 60, disableReorder: true },
-    { field: 'producto', headerName: 'Producto', disableColumnMenu: true, flex: 1, minWidth: 120 , disableReorder: true},
-    { field: 'vendedor', headerName: 'Vendedor', disableColumnMenu: true, flex: 1, minWidth: 120 , disableReorder: true},
-    { field: 'cantidad', headerName: 'Cantidad', type: 'number', disableColumnMenu: true, flex: 0.7, minWidth: 90, disableReorder: true },
-    { field: 'total', headerName: 'Total', type: 'number', disableColumnMenu: true, flex: 0.8, minWidth: 100, disableReorder: true },
-    { field: 'fecha', headerName: 'Fecha', disableColumnMenu: true, flex: 1, minWidth: 120, disableReorder: true },
-  ];
+    const columns: GridColDef<(typeof filteredRows)[number]>[] = [
+        { field: 'id', headerName: 'ID', disableColumnMenu: true, flex: 0.5, minWidth: 60, disableReorder: true },
+        { field: 'producto', headerName: 'Producto', disableColumnMenu: true, flex: 1, minWidth: 120 , disableReorder: true},
+        { field: 'vendedor', headerName: 'Vendedor', disableColumnMenu: true, flex: 1, minWidth: 120 , disableReorder: true},
+        { field: 'cantidad', headerName: 'Cantidad', type: 'number', disableColumnMenu: true, flex: 0.7, minWidth: 90, disableReorder: true },
+        {
+            field: 'total',
+            headerName: 'Total',
+            type: 'number',
+            disableColumnMenu: true,
+            flex: 0.8,
+            minWidth: 100,
+            disableReorder: true,
+            renderCell: (params) => formatAmount(params.value),
+        },
+        { field: 'fecha', headerName: 'Fecha', disableColumnMenu: true, flex: 1, minWidth: 120, disableReorder: true },
+    ];
 
   return (
     <Paper sx={{ p: 2, mb: 2 }} elevation={3}>

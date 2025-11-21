@@ -1,17 +1,35 @@
-import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, AppBar, Typography, CssBaseline, Button, ListItemButton, IconButton, useMediaQuery, Tooltip } from "@mui/material";
+import {
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  AppBar,
+  Typography,
+  CssBaseline,
+  Button,
+  ListItemButton,
+  IconButton,
+  useMediaQuery,
+  Tooltip,
+  Avatar,
+  Divider,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useAppSelector } from "../redux/hooks";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Link, useLocation, Outlet, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useAppSelector } from '../redux/hooks';
 
 const drawerWidth = 220;
 
 const menuItems = [
-  { text: "Dashboard", icon: <DashboardIcon />, path: "/dashboard" },
-  { text: "Perfil", icon: <AccountCircleIcon />, path: "/profile" },
+  { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
+  { text: 'Perfil', icon: <AccountCircleIcon />, path: '/profile' },
 ];
 
 const MainLayout = () => {
@@ -20,23 +38,23 @@ const MainLayout = () => {
   const [open, setOpen] = useState(true);
   const isMobile = useMediaQuery('(max-width:600px)');
   const user = useAppSelector((state) => state.user);
-  
+
   useEffect(() => {
     if (isMobile) {
       setOpen(false);
     }
-  },[isMobile])
+  }, [isMobile]);
 
   const handleLogout = () => {
     navigate('/login', { replace: true });
   };
 
   const toggleDrawer = () => {
-    setOpen((prev) => !prev);
+    setOpen(!open);
   };
 
   return (
-    <Box sx={{ display: "flex" }} >
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -44,39 +62,52 @@ const MainLayout = () => {
             <IconButton color="inherit" edge="start" onClick={toggleDrawer} sx={{ mr: 2 }}>
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              {`${user?.nombre} ${user?.apellido}`}
-            </Typography>
           </Box>
           <Box flex={0.5} gap={2} justifyContent="flex-end" display="flex" alignItems="center">
-            <Tooltip 
-              title={<span style={{ fontSize: 16, fontWeight: 500 }}>Tasa del dólar: $20.00</span>} 
+            <Tooltip
+              title={<span style={{ fontSize: 16, fontWeight: 500 }}>Tasa del dia: 234.00</span>}
               arrow
             >
               <IconButton color="inherit" sx={{ ml: 1 }}>
                 <AttachMoneyIcon />
               </IconButton>
             </Tooltip>
-          <Button color="inherit" onClick={handleLogout}>
-            Cerrar sesión
-          </Button>
           </Box>
         </Toolbar>
       </AppBar>
       <Drawer
-         sx={{
+        sx={{
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
           },
         }}
-        variant="persistent"
+        variant={'temporary'}
         anchor="left"
         open={open}
+        onClose={toggleDrawer}
       >
         <Toolbar />
-        <Box sx={{ overflow: "auto" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 2 }}>
+          <Avatar sx={{ width: 64, height: 64, mb: 1 }} src={user?.foto || undefined}>
+            {user?.nombre?.[0] || ''}
+          </Avatar>
+          <Typography variant="subtitle1" fontWeight={500} textAlign="center">
+            {user?.nombre} {user?.apellido}
+          </Typography>
+          <Button
+            color="primary"
+            variant="outlined"
+            size="small"
+            sx={{ mt: 1, mb: 2 }}
+            onClick={handleLogout}
+          >
+            Cerrar sesión
+          </Button>
+          <Divider sx={{ width: '80%', mb: 2 }} />
+        </Box>
+        <Box sx={{ overflow: 'auto' }}>
           <List>
             {menuItems.map((item) => (
               <ListItem key={item.text} disablePadding>
@@ -93,7 +124,20 @@ const MainLayout = () => {
           </List>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ backgroundColor: '#f0f0f0', flexGrow: 1, p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transition: 'margin-left 0.3s', ml: open ? `${drawerWidth}px` : 0 }}>
+      <Box
+        component="main"
+        sx={{
+          overflow: 'hidden',
+          backgroundColor: '#f0f0f0',
+          p: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'margin-left 0.3s',
+          flexGrow: 1,
+        }}
+      >
         <Toolbar />
         <Outlet />
       </Box>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Paper, Typography, Box, Tooltip, IconButton } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { formatAmount } from '../utils/formatAmount';
 
 const DashboardTotals: React.FC = () => {
   return (
@@ -21,7 +22,7 @@ const DashboardTotals: React.FC = () => {
                 </IconButton>
               </Tooltip>
             </Box>
-            <Typography variant="h5" color="primary">${15200}</Typography>
+            <Typography variant="h5" color="primary">{formatAmount(15200)}</Typography>
             </Box>
           <Box sx={{ flex: 1,  width: '100%', justifyContent: 'center', textAlign: 'center' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>

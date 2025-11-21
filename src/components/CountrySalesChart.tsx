@@ -2,6 +2,7 @@ import React from 'react';
 import { Paper, Typography, Box } from '@mui/material';
 import { ResponsiveBar } from '@nivo/bar';
 import { barData } from '../mocks/dashboardData';
+import { formatAmount } from '../utils/formatAmount';
 
 const CountrySalesChart: React.FC<{ isSmall?: boolean }> = ({ isSmall }) => {
   return (
@@ -53,7 +54,7 @@ const CountrySalesChart: React.FC<{ isSmall?: boolean }> = ({ isSmall }) => {
                   }}
                 >
                   <Box sx={{ flex: 2 }}>{row.country}</Box>
-                  <Box sx={{ flex: 2, textAlign: 'right', fontWeight: 500, color: 'primary.main' }}>{row.ventas}</Box>
+                  <Box sx={{ flex: 2, textAlign: 'right', fontWeight: 500, color: 'primary.main' }}>{formatAmount(row.ventas)}</Box>
                   <Box sx={{ flex: 2, textAlign: 'center', fontSize: 14, color: 'text.secondary' }}>{row.region}</Box>
                   <Box sx={{ flex: 1, textAlign: 'center', fontSize: 14, color: 'text.secondary' }}>{row.year}</Box>
                 </Box>
