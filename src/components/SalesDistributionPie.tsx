@@ -1,10 +1,20 @@
-import React from 'react';
-import { Paper, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Paper, Skeleton, Typography } from '@mui/material';
 import { ResponsivePie } from '@nivo/pie';
 import { salesDistributionData } from '../mocks/salesDistributionData';
 
 const SalesDistributionPie: React.FC = () => {
-  return (
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLoading(false);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+  return loading ? (
+    <Skeleton variant="rectangular" width="100%" height={300} sx={{ mt: 2, borderRadius: 1 }} />
+  ) : (
     <Paper sx={{ height: 300, padding: 2 }} elevation={3}>
       <Typography sx={{ color: 'gray' }}>Distribución de Ventas</Typography>
       <ResponsivePie

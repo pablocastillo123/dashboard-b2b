@@ -1,11 +1,10 @@
-import { Box, Grid, useMediaQuery } from "@mui/material";
+import { Box, Grid, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import CountrySalesChart from '../components/CountrySalesChart';
 import MonthlySalesChart from '../components/MonthlySalesChart';
 import SalesDistributionPie from '../components/SalesDistributionPie';
 import RecentSalesTable from '../components/RecentSalesTable';
-import DashboardTotals from "../components/DashboardTotals";
-
+import DashboardTotals from '../components/DashboardTotals';
 
 const DashboardScreen = () => {
   const theme = useTheme();
@@ -26,7 +25,7 @@ const DashboardScreen = () => {
           </Grid>
         </Grid>
         <Grid size={12}>
-          <CountrySalesChart isSmall={isSmall} />
+          <CountrySalesChart />
         </Grid>
         <Grid size={12}>
           <RecentSalesTable />
