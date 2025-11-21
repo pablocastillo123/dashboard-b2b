@@ -4,7 +4,9 @@ import { useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
+import { useAppDispatch } from "../redux/hooks";
+import { setUser } from "../redux/slices/userSlice";
 
 
 type LoginFormInputs = {
@@ -13,13 +15,21 @@ type LoginFormInputs = {
 };
 
 const LoginScreen = () => {
-
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const onSubmit = () => {
+    dispatch(setUser({
+      nombre: 'Juan',
+      apellido: 'Pérez',
+      telefono: '5551234567',
+      correo: 'juan.perez@email.com',
+      direccion: 'Calle Falsa 123, Ciudad',
+      foto: '',
+    }));
     navigate('/dashboard', { replace: true });
   };
 
