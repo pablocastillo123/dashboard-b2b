@@ -1,9 +1,11 @@
-import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, AppBar, Typography, CssBaseline, Button, ListItemButton, IconButton, useMediaQuery } from "@mui/material";
+import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, AppBar, Typography, CssBaseline, Button, ListItemButton, IconButton, useMediaQuery, Tooltip } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "../redux/hooks";
 
 const drawerWidth = 220;
 
@@ -17,6 +19,7 @@ const MainLayout = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(true);
   const isMobile = useMediaQuery('(max-width:600px)');
+  const user = useAppSelector((state) => state.user);
   
   useEffect(() => {
     if (isMobile) {
@@ -37,17 +40,27 @@ const MainLayout = () => {
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Box flex={1} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <IconButton color="inherit" edge="start" onClick={toggleDrawer} sx={{ mr: 2 }}>
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              Dashboard B2B
+              {`${user?.nombre} ${user?.apellido}`}
             </Typography>
           </Box>
+          <Box flex={0.5} gap={2} justifyContent="flex-end" display="flex" alignItems="center">
+            <Tooltip 
+              title={<span style={{ fontSize: 16, fontWeight: 500 }}>Tasa del dólar: $20.00</span>} 
+              arrow
+            >
+              <IconButton color="inherit" sx={{ ml: 1 }}>
+                <AttachMoneyIcon />
+              </IconButton>
+            </Tooltip>
           <Button color="inherit" onClick={handleLogout}>
-            Logout
+            Cerrar sesión
           </Button>
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer
