@@ -1,73 +1,36 @@
-# React + TypeScript + Vite
+# Dashboard B2B
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dashboard B2B es una aplicación web para visualizar y analizar ventas recientes, totales, clientes destacados y distribución de ventas, utilizando gráficos interactivos y tablas filtrables.
 
-Currently, two official plugins are available:
+## Instrucciones para ejecutar el proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+2. Ejecuta el proyecto en modo desarrollo:
+   ```bash
+   npm run dev
+   ```
+3. Abre tu navegador en [http://localhost:5173](http://localhost:5173) (o el puerto que indique la terminal).
 
-## React Compiler
+4. Para ejecutar los tests:
+   ```bash
+   npm run test
+   ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologías utilizadas
 
-## Expanding the ESLint configuration
+- React
+- TypeScript
+- Vite
+- Material UI (MUI)
+- Redux Toolkit
+- Nivo (gráficas)
+- React Testing Library + Vitest (testing)
+- ESLint + Prettier (formato y lint)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Consideraciones importantes
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Los tests unitarios y de componentes se encuentran en la carpeta `tests`.
+- El proyecto está configurado para trabajar con datos simulados (mock data), los cuales se encuentran organizados en la carpeta `mocks`. Esto permite desarrollar y probar funcionalidades sin depender de una API real.
