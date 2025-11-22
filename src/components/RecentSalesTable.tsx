@@ -128,7 +128,12 @@ const RecentSalesTable: React.FC = () => {
         />
         <FormControl size="small" sx={{ minWidth: 140 }}>
           <InputLabel>Vendedor</InputLabel>
-          <Select label="Vendedor" value={vendedor} onChange={(e) => setVendedor(e.target.value)}>
+          <Select
+            data-testid={'vendedor'}
+            label="Vendedor"
+            value={vendedor}
+            onChange={(e) => setVendedor(e.target.value)}
+          >
             <MenuItem value="">Todos</MenuItem>
             {vendedores.map((v) => (
               <MenuItem key={v} value={v}>
