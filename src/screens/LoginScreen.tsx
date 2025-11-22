@@ -1,13 +1,20 @@
-
-import { Container, Box, Typography, TextField, Button, Paper, IconButton, InputAdornment } from "@mui/material";
+import {
+  Container,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Paper,
+  IconButton,
+  InputAdornment,
+} from '@mui/material';
 import { useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
-import { set, useForm } from 'react-hook-form';
-import { useAppDispatch } from "../redux/hooks";
-import { setUser } from "../redux/slices/userSlice";
-
+import { useForm } from 'react-hook-form';
+import { useAppDispatch } from '../redux/hooks';
+import { setUser } from '../redux/slices/userSlice';
 
 type LoginFormInputs = {
   username: string;
@@ -17,19 +24,25 @@ type LoginFormInputs = {
 const LoginScreen = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormInputs>();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const onSubmit = () => {
-    dispatch(setUser({
-      nombre: 'Juan',
-      apellido: 'Pérez',
-      telefono: '5551234567',
-      correo: 'juan.perez@email.com',
-      direccion: 'Calle Falsa 123, Ciudad',
-      foto: '',
-    }));
+    dispatch(
+      setUser({
+        nombre: 'Juan',
+        apellido: 'Pérez',
+        telefono: '5551234567',
+        correo: 'juan.perez@email.com',
+        direccion: 'Calle Falsa 123, Ciudad',
+        foto: '',
+      })
+    );
     navigate('/dashboard', { replace: true });
   };
 
@@ -41,7 +54,7 @@ const LoginScreen = () => {
       return 'La contraseña debe contener al menos una letra mayúscula';
     }
     return true;
-  }
+  };
 
   return (
     <Container maxWidth="sm">
@@ -49,7 +62,13 @@ const LoginScreen = () => {
         <Typography variant="h4" align="center" gutterBottom>
           Iniciar Sesión
         </Typography>
-        <Box component="form" display="flex" flexDirection="column" gap={2} onSubmit={handleSubmit(onSubmit)}>
+        <Box
+          component="form"
+          display="flex"
+          flexDirection="column"
+          gap={2}
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <TextField
             label="Usuario"
             variant="outlined"

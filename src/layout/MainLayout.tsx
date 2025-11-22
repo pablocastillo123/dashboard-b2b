@@ -12,7 +12,6 @@ import {
   Button,
   ListItemButton,
   IconButton,
-  useMediaQuery,
   Tooltip,
   Avatar,
   Divider,
@@ -22,7 +21,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link, useLocation, Outlet, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAppSelector } from '../redux/hooks';
 
 const drawerWidth = 220;
@@ -35,15 +34,8 @@ const menuItems = [
 const MainLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [open, setOpen] = useState(true);
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const [open, setOpen] = useState(false);
   const user = useAppSelector((state) => state.user);
-
-  useEffect(() => {
-    if (isMobile) {
-      setOpen(false);
-    }
-  }, [isMobile]);
 
   const handleLogout = () => {
     navigate('/login', { replace: true });
@@ -110,7 +102,7 @@ const MainLayout = () => {
         <Box sx={{ overflow: 'auto' }}>
           <List>
             {menuItems.map((item) => (
-              <ListItem key={item.text} disablePadding>
+              <ListItem key={item.text}>
                 <ListItemButton
                   component={Link}
                   to={item.path}
