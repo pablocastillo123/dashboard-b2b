@@ -11,8 +11,8 @@ const DashboardScreen = () => {
   const isSmall = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box width="100%" height="100%" minHeight="80vh" p={2}>
-      <Grid container spacing={2} justifyContent="center">
+    <Box width="100%" height="100%" minHeight="80vh">
+      <Grid container spacing={2} justifyContent="center" p={2} pb={6}>
         <Grid size={12}>
           <DashboardTotals />
         </Grid>

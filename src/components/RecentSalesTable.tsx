@@ -10,8 +10,6 @@ import {
   TextField,
   InputAdornment,
   IconButton,
-  useMediaQuery,
-  useTheme,
   Skeleton,
 } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
@@ -26,9 +24,7 @@ const RecentSalesTable: React.FC = () => {
   const [vendedor, setVendedor] = useState('');
   const [producto, setProducto] = useState('');
   const [search, setSearch] = useState('');
-  const theme = useTheme();
   const [loading, setLoading] = useState(true);
-  const isSmall = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -99,7 +95,7 @@ const RecentSalesTable: React.FC = () => {
   return loading ? (
     <Skeleton variant="rectangular" width="100%" height={300} sx={{ mt: 2, borderRadius: 1 }} />
   ) : (
-    <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
+    <Paper sx={{ p: 2 }} elevation={3}>
       <Typography sx={{ color: 'gray', mb: 2 }}>Ventas recientes</Typography>
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 2 }}>
         <TextField
@@ -156,7 +152,6 @@ const RecentSalesTable: React.FC = () => {
       </Box>
       <Box sx={{ width: '100%' }}>
         <DataGrid
-          sx={{ width: isSmall ? 300 : '100%' }}
           rows={filteredRows}
           columns={columns}
           initialState={{

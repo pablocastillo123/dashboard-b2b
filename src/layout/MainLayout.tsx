@@ -59,6 +59,7 @@ const MainLayout = () => {
             <Tooltip
               title={<span style={{ fontSize: 16, fontWeight: 500 }}>Tasa del dia: 234.00</span>}
               arrow
+              placement="left"
             >
               <IconButton color="inherit" sx={{ ml: 1 }}>
                 <AttachMoneyIcon />
@@ -81,25 +82,16 @@ const MainLayout = () => {
         onClose={toggleDrawer}
       >
         <Toolbar />
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 2 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 2, mt: 2 }}>
           <Avatar sx={{ width: 64, height: 64, mb: 1 }} src={user?.foto || undefined}>
             {user?.nombre?.[0] || ''}
           </Avatar>
-          <Typography variant="subtitle1" fontWeight={500} textAlign="center">
+          <Typography variant="subtitle1" fontWeight={500} textAlign="center" mb={2}>
             {user?.nombre} {user?.apellido}
           </Typography>
-          <Button
-            color="primary"
-            variant="outlined"
-            size="small"
-            sx={{ mt: 1, mb: 2 }}
-            onClick={handleLogout}
-          >
-            Cerrar sesión
-          </Button>
           <Divider sx={{ width: '80%', mb: 2 }} />
         </Box>
-        <Box sx={{ overflow: 'auto' }}>
+        <Box sx={{ overflow: 'auto', flex: 1 }}>
           <List>
             {menuItems.map((item) => (
               <ListItem key={item.text}>
@@ -115,19 +107,40 @@ const MainLayout = () => {
             ))}
           </List>
         </Box>
+        <Box
+          sx={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+            width: '100%',
+            mb: 5,
+            px: 2,
+          }}
+        >
+          <Button
+            sx={{ width: '100%' }}
+            color="primary"
+            variant="outlined"
+            size="small"
+            onClick={handleLogout}
+          >
+            Cerrar sesión
+          </Button>
+        </Box>
       </Drawer>
       <Box
         component="main"
         sx={{
-          overflow: 'hidden',
+          overflowX: 'hidden',
           backgroundColor: '#f0f0f0',
-          p: 1,
+          p: 2,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           transition: 'margin-left 0.3s',
           flexGrow: 1,
+          height: '100vh',
         }}
       >
         <Toolbar />

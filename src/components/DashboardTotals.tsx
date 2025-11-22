@@ -16,7 +16,7 @@ const DashboardTotals: React.FC = () => {
   return loading ? (
     <Skeleton variant="rectangular" width="100%" height={118} sx={{ mt: 2, borderRadius: 1 }} />
   ) : (
-    <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
+    <Paper elevation={3} sx={{ p: 2 }}>
       <Box
         sx={{
           display: 'flex',

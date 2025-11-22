@@ -19,7 +19,7 @@ const CountrySalesChart: React.FC = () => {
   return loading ? (
     <Skeleton variant="rectangular" width="100%" height={300} sx={{ mt: 2, borderRadius: 1 }} />
   ) : (
-    <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
+    <Paper sx={{ p: 2 }} elevation={3}>
       <Typography sx={{ color: 'gray', mb: 2 }}>Ventas por país</Typography>
       <Box
         sx={{
