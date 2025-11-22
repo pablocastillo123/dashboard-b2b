@@ -19,7 +19,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import { salesTableData } from '../mocks/salesTableData';
 import { formatAmount } from '../utils/formatAmount';
-import type { FilterParams, Sale } from '../types/sale';
+import { filterSalesData } from '../helpers/filterSalesData';
 import type { GridColDef } from '@mui/x-data-grid';
 
 const RecentSalesTable: React.FC = () => {
@@ -39,19 +39,6 @@ const RecentSalesTable: React.FC = () => {
 
   const vendedores = Array.from(new Set(salesTableData.map((row) => row.vendedor)));
   const productos = Array.from(new Set(salesTableData.map((row) => row.producto)));
-
-  function filterSalesData(data: Sale[], { search, vendedor, producto }: FilterParams): Sale[] {
-    return data.filter((row: Sale) => {
-      const matchesSearch = search
-        ? String(row.id).includes(search) ||
-          row.producto.toLowerCase().includes(search.toLowerCase()) ||
-          row.vendedor.toLowerCase().includes(search.toLowerCase())
-        : true;
-      const matchesVendedor = vendedor ? row.vendedor === vendedor : true;
-      const matchesProducto = producto ? row.producto === producto : true;
-      return matchesSearch && matchesVendedor && matchesProducto;
-    });
-  }
 
   const filteredRows = filterSalesData(salesTableData, { search, vendedor, producto });
 
