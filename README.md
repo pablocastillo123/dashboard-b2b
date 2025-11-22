@@ -34,3 +34,4 @@ Dashboard B2B es una aplicación web para visualizar y analizar ventas recientes
 
 - Los tests unitarios y de componentes se encuentran en la carpeta `tests`.
 - El proyecto está configurado para trabajar con datos simulados (mock data), los cuales se encuentran organizados en la carpeta `mocks`. Esto permite desarrollar y probar funcionalidades sin depender de una API real.
+- Para iniciar sesión puedes utilizar cualquier nombre de usuario y contraseña. (En un entorno real esto no sería posible). La contraseña debe cumplir dos validaciones: máximo 6 caracteres y al menos un carácter en mayúscula.
