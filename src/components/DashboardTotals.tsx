@@ -7,10 +7,10 @@ const DashboardTotals: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timeout = setTimeout(() => {
       setLoading(false);
     }, 5000);
-    return () => clearInterval(interval);
+    return () => clearTimeout(timeout);
   }, []);
 
   return loading ? (
@@ -43,7 +43,7 @@ const DashboardTotals: React.FC = () => {
               </IconButton>
             </Tooltip>
           </Box>
-          <Typography variant="h5" color="primary">
+          <Typography data-testid="total-sales" variant="h5" color="primary">
             {formatAmount(15200)}
           </Typography>
         </Box>
@@ -65,7 +65,7 @@ const DashboardTotals: React.FC = () => {
               </IconButton>
             </Tooltip>
           </Box>
-          <Typography variant="h5" color="primary">
+          <Typography data-testid="top-clients" variant="h5" color="primary">
             {50}
           </Typography>
         </Box>
@@ -87,7 +87,7 @@ const DashboardTotals: React.FC = () => {
               </IconButton>
             </Tooltip>
           </Box>
-          <Typography variant="h5" color="primary">
+          <Typography data-testid="total-orders" variant="h5" color="primary">
             {45}
           </Typography>
         </Box>

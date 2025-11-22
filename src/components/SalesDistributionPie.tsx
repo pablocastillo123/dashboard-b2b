@@ -7,11 +7,12 @@ const SalesDistributionPie: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timeout = setTimeout(() => {
       setLoading(false);
     }, 5000);
-    return () => clearInterval(interval);
+    return () => clearTimeout(timeout);
   }, []);
+
   return loading ? (
     <Skeleton variant="rectangular" width="100%" height={300} sx={{ mt: 2, borderRadius: 1 }} />
   ) : (

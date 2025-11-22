@@ -7,10 +7,10 @@ const MonthlySalesChart: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timeout = setTimeout(() => {
       setLoading(false);
     }, 5000);
-    return () => clearInterval(interval);
+    return () => clearTimeout(timeout);
   }, []);
 
   return loading ? (

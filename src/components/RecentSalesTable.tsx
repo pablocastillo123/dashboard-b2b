@@ -31,10 +31,10 @@ const RecentSalesTable: React.FC = () => {
   const isSmall = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timeout = setTimeout(() => {
       setLoading(false);
     }, 5000);
-    return () => clearInterval(interval);
+    return () => clearTimeout(timeout);
   }, []);
 
   const vendedores = Array.from(new Set(salesTableData.map((row) => row.vendedor)));
