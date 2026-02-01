@@ -3,11 +3,11 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { User } from '../../types/user';
 
 const initialState: User = {
-  nombre: '',
-  apellido: '',
-  telefono: '',
-  correo: '',
-  direccion: '',
+  nombre: 'Pepe',
+  apellido: 'Delgado',
+  telefono: '401-555-1234',
+  correo: 'pepe.delgado@example.com',
+  direccion: 'calle Falsa 123, Ciudad, País',
   foto: '',
 };
 

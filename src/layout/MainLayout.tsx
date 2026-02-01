@@ -9,18 +9,15 @@ import {
   AppBar,
   Typography,
   CssBaseline,
-  Button,
   ListItemButton,
   IconButton,
-  Tooltip,
   Avatar,
   Divider,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Link, useLocation, Outlet, useNavigate } from 'react-router-dom';
+import { Link, useLocation, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import { useAppSelector } from '../redux/hooks';
 
@@ -33,13 +30,9 @@ const menuItems = [
 
 const MainLayout = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
   const user = useAppSelector((state) => state.user);
-
-  const handleLogout = () => {
-    navigate('/login', { replace: true });
-  };
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -54,17 +47,6 @@ const MainLayout = () => {
             <IconButton color="inherit" edge="start" onClick={toggleDrawer} sx={{ mr: 2 }}>
               <MenuIcon />
             </IconButton>
-          </Box>
-          <Box flex={0.5} gap={2} justifyContent="flex-end" display="flex" alignItems="center">
-            <Tooltip
-              title={<span style={{ fontSize: 16, fontWeight: 500 }}>Tasa del dia: 234.00</span>}
-              arrow
-              placement="left"
-            >
-              <IconButton color="inherit" sx={{ ml: 1 }}>
-                <AttachMoneyIcon />
-              </IconButton>
-            </Tooltip>
           </Box>
         </Toolbar>
       </AppBar>
@@ -106,26 +88,6 @@ const MainLayout = () => {
               </ListItem>
             ))}
           </List>
-        </Box>
-        <Box
-          sx={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            display: 'flex',
-            width: '100%',
-            mb: 5,
-            px: 2,
-          }}
-        >
-          <Button
-            sx={{ width: '100%' }}
-            color="primary"
-            variant="outlined"
-            size="small"
-            onClick={handleLogout}
-          >
-            Cerrar sesión
-          </Button>
         </Box>
       </Drawer>
       <Box
